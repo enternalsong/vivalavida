@@ -1,0 +1,85 @@
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/functions";
+@import "./variables";
+.navbar-nav .show > .nav-link, .navbar-nav .nav-link.active{
+    color:#fd7e14;
+}
+.nav-link:hover{
+    color:#fd7e14;
+}
+.nav-container{
+    background-color:$gray-100;
+    padding: 0px 16px 0px 16px;
+    font-size: 18px;
+    .navbar{
+        flex-wrap:nowrap;
+
+        .navbar-brandbox{
+            height:60px;
+            width:60px;
+            position: relative;
+            .brand-img{
+                height:30px;
+                width:30px;
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+             }
+        }
+        .navbar-collapse{
+            display:flex;
+            flex-direction:row;
+            flex-wrap:nowrap;
+            justify-content:space-between;
+            align-items: center;
+            .nav-link{
+              padding:0px 5px 0px 5px;  
+            }
+            .nav-dropdown{
+                display:flex;
+                flex-direction:row;
+                align-items: center;
+                flex-wrap:nowrap;
+            }
+            .navbar-end{
+                display:flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                .nav-cart-svg{
+                    width:20px;
+                    height:20px;
+                }
+            }
+        }
+
+    }
+}
+@media(max-width: 768px){
+        .navbar{
+        .navbar-collapse{
+            justify-content: flex-end;
+            .nav-dropdown{
+                display:flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+        }
+    }
+  }
+@media(max-width: 576px){
+ .nav-container{
+    padding: 0px 10px 0px 10px;
+    .navbar{
+        .navbar-collapse{
+            justify-content: flex-end;
+            .nav-dropdown{
+                display:flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+        }
+    }
+
+
+ }
+}
