@@ -1,7 +1,7 @@
 import {useReducer} from 'react'
-import Navbar_Back from "./back/Navbar-back.js";
-import Productslist from "./back/Products.js";
-import Cart from "./back/Cart.js";
+import Navbar_Back from "./admin/Navbar-back.js";
+import Productslist from "./admin/Products.js";
+import Cart from "./admin/Cart.js";
 //Car Context
 import {CartContext} from '../store.js'
 function Navbar1 () {
