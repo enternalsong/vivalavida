@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
         username:'',
         password:'',
     });
+    const [loginState, setLoginState]=useState({})
     const handleChange = (e) =>{
        // console.log(e);
         const {name,value} = e.target;
@@ -14,14 +15,19 @@ import { useNavigate } from 'react-router-dom';
         setData({...data,[name]:value});
     }
     const submit = async(e)=>{
-        const signinRes = await axios.post(`/v2/admin/signin`,data);
-        const {token,expired} = signinRes.data;
-        document.cookie = `shopToken=${token};expires=${new Date(expired)};`;
-        axios.defaults.headers.common['Authorization'] = token;//save token
-        const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/admin/products/all`);
-        console.log(signinRes);
-        if(signinRes.data.success){
-            navigate('/admin/products')
+        try{
+            const signinRes = await axios.post(`/v2/admin/signin`,data);
+            const {token,expired} = signinRes.data;
+            document.cookie = `shopToken=${token};expires=${new Date(expired)};`;
+            axios.defaults.headers.common['Authorization'] = token;//save token
+            const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/admin/products/all`);
+            // console.log(signinRes);
+            if(signinRes.data.success){
+                navigate('/admin/products')
+            }
+        }catch(error){
+            // console.log(error.response.data)
+            setLoginState(error.response.data);
         }
     }
     
@@ -39,8 +45,9 @@ import { useNavigate } from 'react-router-dom';
                                         <div className="col-12">
                                             <label>Username<span className="text-danger">*</span></label>
                                             <div className="input-group">
-                                                <div className="input-group-text"><i className="bi bi-person-fill"></i></div>
-                                                <input type="text" className="form-control" name="username" onChange={handleChange} placeholder="Enter Username"/>
+                                                <div className="input-group-text">
+                                                    <i className="bi bi-person-fill"></i></div>
+                                                    <input type="text" required = "required" className="form-control" name="username" onChange={handleChange} placeholder="Enter Username"/>
                                             </div>
                                         </div>
 
@@ -48,7 +55,7 @@ import { useNavigate } from 'react-router-dom';
                                             <label>Password<span className="text-danger">*</span></label>
                                             <div className="input-group">
                                                 <div className="input-group-text"><i className="bi bi-lock-fill"></i></div>
-                                                <input type="text" className="form-control" name="password" onChange={handleChange} placeholder="Enter Password"/>
+                                                <input type="password" className="form-control" name="password" onChange={handleChange} placeholder="Enter Password"/>
                                             </div>
                                         </div>
 
@@ -58,7 +65,9 @@ import { useNavigate } from 'react-router-dom';
                                                 <label className="form-check-label" htmlFor="inlineFormCheck">Remember me</label>
                                             </div>
                                         </div>
-
+                                        <div className={`col-sm-12 alert alert-danger ${loginState.message ? `d-block`: `d-none`}`} role='alert'>
+                                        {loginState.message}
+                                        </div>
                                         <div className="col-sm-6">
                                             <a href="#" className="float-end text-primary">Forgot Password?</a>
                                         </div>

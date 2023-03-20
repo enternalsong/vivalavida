@@ -1,29 +1,54 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState,useRef} from 'react';
 import axios from 'axios';
-
+import ProductModal from '../components/ProductModal';
+import { Modal } from 'bootstrap';
 function AdminProducts(){
     const [productsData, setProductsData] =useState([]);
+    const [pagination,setPagination] =useState({});
+    const productModal = useRef(null);
+    const [type,setType] =useState('create');
+    const  [tempProduct,setTempProduct] =useState({});
+    const openProductModal = (type,product)=>{
+        setType(type);
+        setTempProduct(product);
+        productModal.current.show();
+    }
+    const closeProductModal = ()=>{
+        productModal.current.hide();
+    }
     useEffect(()=>{
         //get token
-        const token = document.cookie
-        .split('; ')
-        .find((row)=> row.startsWith('shopToken='))
-        ?.split('=')[1];
-        axios.defaults.headers.common['Authorization'] = token;
-        console.log(token);
+        // const token = document.cookie
+        // .split('; ')
+        // .find((row)=> row.startsWith('shopToken='))
+        // ?.split('=')[1];
+        // axios.defaults.headers.common['Authorization'] = token;
+        // console.log(token);
+        productModal.current = new Modal('#productModal',{
+            backdrop: 'static',
+        });
+        getProducts();
+    },[])
+    const getProducts=()=>{
         (async(e)=>{
             const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/admin/products/all`);
-            setProductsData(productRes.data.products);
+            const saveRes =productRes.data.products;
+           // console.log(productRes.data.pagination);
+            setProductsData(saveRes);
+            setPagination(productRes.data.pagination);
         })()
-    },[]);
+        
+    }
     return(
         <div className="p-3">
+            <ProductModal closeProductModal={closeProductModal} getProducts={getProducts} type={type} tempProduct={tempProduct}></ProductModal>
             <h3>產品列表</h3>
             <hr />
             <div className="text-end">
             <button
                 type="button"
                 className="btn btn-primary btn-sm"
+                onClick={()=>{openProductModal('create',{})}}
             >
                 建立新商品
             </button>
@@ -39,7 +64,7 @@ function AdminProducts(){
                 </tr>
             </thead>
             <tbody>
-            <tr>
+             {/* <tr>
                 <td>分類</td>
                 <td>名稱</td>
                 <td>價格</td>
@@ -58,18 +83,19 @@ function AdminProducts(){
                     刪除
                     </button>
                 </td>
-                </tr>
-                {/* {productsData.map((item)=>{
+                </tr>  */}
+                  {Object.values(productsData).map((item)=>{
                     return(
-                        <tr>
+                <tr key={item.id}>
                 <td>{item.category}</td>
                 <td>{item.title}</td>
                 <td>{item.price}</td>
-                <td>啟用</td>
+                <td>{item.is_enabled ? "啟用":"未啟用"}</td>
                 <td>
                     <button
                     type="button"
                     className="btn btn-primary btn-sm"
+                    onClick={()=>openProductModal('edit',item)}
                     >
                     編輯
                     </button>
@@ -82,7 +108,7 @@ function AdminProducts(){
                 </td>
                 </tr>
                     )
-                })} */}
+                })}  
                 
             </tbody>
             </table>
