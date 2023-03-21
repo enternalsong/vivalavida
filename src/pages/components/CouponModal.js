@@ -1,7 +1,7 @@
 import axios from 'axios'
 // import { Modal } from "bootstrap";
 import {useState,useEffect } from 'react';
-const ProductModal =({closeProductModal,getProducts,type,tempProduct})=>{
+const CouponModal =({closeProductModal,getProducts,type,tempProduct})=>{
     const [tempData,setTempData] =useState({
             title: "",
             category: "",
@@ -62,7 +62,7 @@ const ProductModal =({closeProductModal,getProducts,type,tempProduct})=>{
              method ='put';
             }
             const res = await axios[method](api,{data:tempData},);
-            //console.log(res);
+            console.log(res);
             closeProductModal();
             getProducts();
         }catch(error){
@@ -169,4 +169,4 @@ const ProductModal =({closeProductModal,getProducts,type,tempProduct})=>{
 
     )
 };
-export default ProductModal;
+export default CouponModal;

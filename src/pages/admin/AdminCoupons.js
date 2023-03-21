@@ -4,20 +4,20 @@ import ProductModal from '../components/ProductModal';
 import DeleteModal from '../components/DeleteModal';
 import Pagination from '../components/Pagination';
 import { Modal } from 'bootstrap';
-function AdminProducts(){
-    const [productsData, setProductsData] =useState([]);
+function AdminCoupons(){
+    const [coupons, setCoupons] =useState([]);
     const [pagination,setPagination] =useState({});
-    const productModal = useRef(null);
+    const couponModal = useRef(null);
     const deleteModal = useRef(null);
     const [type,setType] =useState('create');
     const  [tempProduct,setTempProduct] =useState({});
-    const openProductModal = (type,product)=>{
+    const openCouponModal = (type,product)=>{
         setType(type);
         setTempProduct(product);
-        productModal.current.show();
+        couponModal.current.show();
     }
     const closeProductModal = ()=>{
-        productModal.current.hide();
+        couponModal.current.hide();
     }
     const openDeleteModal = (product)=>{
         setTempProduct(product);
@@ -36,21 +36,20 @@ function AdminProducts(){
         // ?.split('=')[1];
         // axios.defaults.headers.common['Authorization'] = token;
         // console.log(token);
-        productModal.current = new Modal('#productModal',{
+        couponModal.current = new Modal('#productModal',{
             backdrop: 'static',
         });
         deleteModal.current = new Modal('#deleteModal');
-        getProducts();
+        getCoupons();
     },[]);
-    const getProducts=(page=1)=>{
+    const getCoupons=(page=1)=>{
         (async(e)=>{
-            const productAllRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/admin/products/all`);
-            const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/admin/products?page=${page}`)
-            const saveRes =productRes.data.products;
+            const Res = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/admin/coupons?page=${page}`)
+            const saveRes =Res.data.coupons;
            // console.log(productRes.data.pagination);
-            //console.log(productRes);
-            setProductsData(saveRes);
-            setPagination(productRes.data.pagination);
+            console.log(Res);
+            setCoupons(saveRes);
+            setPagination(Res.data.pagination);
         })()
     };
     const deleteProduct = async(id)=>{
@@ -61,7 +60,7 @@ function AdminProducts(){
             //console.log(res);
             if(res.data.success){
                 closeDeleteModal();
-                getProducts();
+                getCoupons();
             }
         } catch(error){
             console.log(error);
@@ -69,7 +68,7 @@ function AdminProducts(){
     };
     return(
         <div className="p-3">
-            <ProductModal closeProductModal={closeProductModal} getProducts={getProducts} type={type} tempProduct={tempProduct}></ProductModal>
+            <ProductModal closeProductModal={closeProductModal} getProducts={getCoupons} type={type} tempProduct={tempProduct}></ProductModal>
             <DeleteModal close={closeDeleteModal} handleDelete={deleteProduct} text={tempProduct.title}id={tempProduct.id}></DeleteModal>
             <h3>產品列表</h3>
             <hr />
@@ -77,7 +76,7 @@ function AdminProducts(){
             <button
                 type="button"
                 className="btn btn-primary btn-sm"
-                onClick={()=>{openProductModal('create',{})}}
+                onClick={()=>{openCouponModal('create',{})}}
             >
                 建立新商品
             </button>
@@ -113,7 +112,7 @@ function AdminProducts(){
                     </button>
                 </td>
                 </tr>  */}
-                  {Object.values(productsData).map((item)=>{
+                  {Object.values(coupons).map((item)=>{
                     return(
                 <tr key={item.id}>
                 <td>{item.category}</td>
@@ -124,7 +123,7 @@ function AdminProducts(){
                     <button
                     type="button"
                     className="btn btn-primary btn-sm"
-                    onClick={()=>openProductModal('edit',item)}
+                    onClick={()=>openCouponModal('edit',item)}
                     >
                     編輯
                     </button>
@@ -143,8 +142,8 @@ function AdminProducts(){
             </tbody>
             </table>
             {/* Pagination*/}
-                <Pagination pagination={pagination} getProducts={getProducts}></Pagination>
+                <Pagination pagination={pagination} getProducts={getCoupons}></Pagination>
         </div>
     )
 }
-export default AdminProducts;
+export default AdminCoupons;
