@@ -1,37 +1,32 @@
 import axios from 'axios'
 // import { Modal } from "bootstrap";
 import {useState,useEffect } from 'react';
-const CouponModal =({closeProductModal,getProducts,type,tempProduct})=>{
+const CouponModal =({closeModal,getCoupons,type,tempCoupon})=>{
     const [tempData,setTempData] =useState({
-            title: "",
-            category: "",
-            origin_price: 100,
-            price: 300,
-            unit: "",
-            content: "",
-            description: "",
+            title: "超級優惠",
+            code: "aaa",
+            due_date: 1555459200,
+            percent: 100,
             is_enabled: 0,
-            imageUrl: "",
           });
+    const [date,setDate]= useState(new Date());
           useEffect(()=>{
-            //console.log(type,tempProduct);
+            console.log(type,tempCoupon);
             if(type==='create'){
                 setTempData({
-                    title: "",
-                    category: "",
-                    origin_price: 100,
-                    price: 300,
-                    unit: "",
-                    content: "",
-                    description: "",
+                    title: "超級優惠",
+                    code: "aaa",
+                    due_date: 1555459200,
+                    percent: 100,
                     is_enabled: 0,
-                    imageUrl: "",
                 });
+                setDate(new Date());
             } else if(type==='edit'){
-                setTempData(tempProduct);
-                //console.log(tempProduct);
+                setTempData(tempCoupon);
+                setDate(new Date(tempCoupon.due_date))
+                //console.log(tempCoupon);
             }
-        },[type,tempProduct]);
+        },[type,tempCoupon]);
     const handleChange = (e) =>{
         const{value ,name} = e.target;
         if(['price','origin_price'].includes(name)){
@@ -53,31 +48,38 @@ const CouponModal =({closeProductModal,getProducts,type,tempProduct})=>{
             })
         }
     }
-    const addProduct=async()=>{
+    const addCoupon=async()=>{
         try{
-            let api= `/v2/api/${process.env.REACT_APP_API_PATH}/admin/product`;
+
+            let api= `/v2/api/${process.env.REACT_APP_API_PATH}/admin/coupon`;
             let method = 'post';
             if(type ==='edit'){
-            api=`/v2/api/${process.env.REACT_APP_API_PATH}/admin/product/${tempProduct.id}`;
+            api=`/v2/api/${process.env.REACT_APP_API_PATH}/admin/coupon/${tempCoupon.id}`;
              method ='put';
             }
-            const res = await axios[method](api,{data:tempData},);
+            const res = await axios[method](
+                api,{
+                data:{
+                    ...tempData,
+                    due_date: date.getTime(), //change to timestamp
+                }
+            },);
             console.log(res);
-            closeProductModal();
-            getProducts();
+            closeModal();
+            getCoupons();
         }catch(error){
             console.log(error);
         }
        } 
     return(
-        <div className="modal fade" id="productModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="couponModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                 <div className="modal-header">
                     <h3 className="modal-title" id="exampleModalLabel">
-                        {type==="create"? "建立新產品": `編輯 ${tempData.title}`}
+                        {type==="create"? "建立新優惠券": `編輯 ${tempData.title} 優惠券`}
                         </h3>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={closeProductModal}>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={closeModal}>
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -94,72 +96,54 @@ const CouponModal =({closeProductModal,getProducts,type,tempProduct})=>{
                     </div>
                     <div className="col-md-6">
                         <div className="form-group mb-2">
-                            <label htmlFor="price">原價</label>
-                            <input type="number" id="origin_price" name="origin_price" placeholder="請輸入原價" 
-                            className="form-control" onChange={handleChange} value={tempData.origin_price}/>
-                        </div>
-                        <div className="form-group mb-2">
-                            <label htmlFor="category">分類</label>
-                            <input type="text" id="category" name="category" placeholder="請輸入分類" 
-                            className="form-control" onChange={handleChange} value={tempData.category}/>
+                            <label className="w-100" htmlFor="percent">折扣(%)</label>
+                            <input type="text" id="percent" name="percent" placeholder="請輸入折扣(%)" 
+                            className="form-control" onChange={handleChange} value={tempData.percent}/>
                         </div>
                     </div>
                     <div className="col-md-6">
                         <div className="form-group mb-2">
-                            <label htmlFor="price">售價</label>
-                            <input type="number" id="price" name="price" placeholder="請輸入原價" 
-                            className="form-control" onChange={handleChange} value={tempData.price}/>
-                        </div>
-                        <div className="form-group mb-2">
-                            <label htmlFor="price">單位</label>
-                            <input type="unit" id="unit" name="unit"placeholder="請輸入單位" 
-                            className="form-control" onChange={handleChange} value={tempData.unit}/>
-                        </div>
-
-                    </div>
-                    <div className="col-md-12">
-
-                        <div className="form-group mb-2">
-                            <label htmlFor="discription">描述</label>
-                            <input type="text" id="description" name="description" placeholder="請輸入描述" 
-                            className="form-control" onChange={handleChange} value={tempData.description}/>
-                        </div>
-
-                        <div className="form-group mb-2"></div>
-                            <div className="form-check">
-                                    <input className="form-check-input" type="checkbox"  
-                                    id="is_enabled" name="is_enabled"
-                                    onChange={handleChange} checked={!!tempData.is_enabled}/>
-                                    <label className="form-check-label" htmlFor="flexCheckDefault">
-                                        是否啟用
-                                    </label>
-                            </div>
+                        <label className="w-100" htmlFor="due_date">到期日</label>
+                        <input type="date" 
+                        id="due_date" name="due_date" placeholder="請輸入到期日" 
+                        className="form-control" 
+                        value={`${date.getFullYear().toString()}-${(date.getMonth() +1
+                            )
+                            .toString().padStart(2, 0)}-${date.getDate().toString().padStart(2, 0)}`}
+                        onChange = {(e)=>{
+                            console.log(e.target.value);
+                            setDate(new Date(e.target.value));
+                        }}
+                        />
                         </div>
                     </div>
                     <div className="col-md-6">
                         <div className="form-group mb-2">
-                            <label htmlFor="price">輸入圖片網址</label>
-                            <input type="text" id="image" name="imageUrl" placeholder="請輸入圖片連結" 
-                            className="form-control" onChange={handleChange} value={tempData.imageUrl}/>
+                            <label className="w-100" htmlFor="code">優惠碼</label>
+                            <input type="text" id="code" name="code" placeholder="請輸入優惠碼" 
+                            className="form-control" onChange={handleChange} value={tempData.code}/>
                         </div>
+                        <div className="form-check">
+                            <label className='form-check-label' htmlFor='is_enabled'>
+                                    <input
+                                        className='form-check-input me-2'
+                                        type='checkbox'
+                                        id='is_enabled'
+                                        name='is_enabled'
+                                        checked={tempData.is_enabled}
+                                        onChange={handleChange}
+                                    />
+                                    是否啟用
+                            </label> 
+                        </div>    
                     </div>
-                    <div className="col-md-6">
-                        <div className='form-group mb-2'>
-                            <label className='w-100' htmlFor='customFile'>
-                                或 上傳圖片
-                                <input
-                                type='file'
-                                id='customFile'
-                                className='form-control'
-                                />
-                            </label>
-                        </div>
-                    </div>
-            </div>  
+
+                </div>
+            </div>   
             {/* Modal inner */}
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={closeProductModal}>關閉</button>
-                    <button type="button" className="btn btn-primary" onClick={addProduct}>更新商品內容</button>
+                    <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={closeModal}>關閉</button>
+                    <button type="button" className="btn btn-primary" onClick={addCoupon}>更新優惠券內容</button>
                 </div>
                 </div>
             </div>

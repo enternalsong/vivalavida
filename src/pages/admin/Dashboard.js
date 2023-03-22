@@ -1,9 +1,13 @@
 
 import {Outlet, useNavigate,Link} from 'react-router-dom';
 import axios from 'axios'
-import {useEffect} from 'react'
+import {useEffect, useReducer} from 'react'
+import Message from '../components/Message.js';
+import {MessageContext,messageReducer,initState} from '../../store/messageStore.js'
+
 function Dashboard() {
   const navigate = useNavigate()
+  const reducer = useReducer(messageReducer, initState);
   const logout =() =>{
     document.cookie = 'shopToken=;';
     console.log(document.cookie);
@@ -34,8 +38,11 @@ function Dashboard() {
       }})();
   },[navigate,token]);
     return (
-      <>
-        <nav className="navbar navbar-expand-lg bg-dark">
+      <>  
+        <MessageContext.Provider value={reducer}>
+          <Message></Message>
+
+        <nav className="navbar navbar-expand-lg bg-dark pt-2 pb-2">
           <div className="container-fluid">
             <p className="text-white mb-0">
               VivaLaVida 後台管理系統
@@ -86,6 +93,7 @@ function Dashboard() {
             {/* Products end */}
           </div>
         </div>
+        </MessageContext.Provider>
       </>
     )
   }

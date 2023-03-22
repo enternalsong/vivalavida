@@ -1,6 +1,7 @@
 import axios from 'axios'
 // import { Modal } from "bootstrap";
-import {useState,useEffect } from 'react';
+import {useState,useEffect, useContext } from 'react';
+import { MessageContext ,handleSuccess } from '../../store/messageStore';
 const ProductModal =({closeProductModal,getProducts,type,tempProduct})=>{
     const [tempData,setTempData] =useState({
             title: "",
@@ -13,6 +14,7 @@ const ProductModal =({closeProductModal,getProducts,type,tempProduct})=>{
             is_enabled: 0,
             imageUrl: "",
           });
+    const [,dispatch] =useContext(MessageContext);
           useEffect(()=>{
             //console.log(type,tempProduct);
             if(type==='create'){
@@ -63,10 +65,19 @@ const ProductModal =({closeProductModal,getProducts,type,tempProduct})=>{
             }
             const res = await axios[method](api,{data:tempData},);
             //console.log(res);
+            handleSuccess(dispatch, res);
             closeProductModal();
             getProducts();
         }catch(error){
             console.log(error);
+            dispatch({
+                type: 'POST_MESSAGE',
+                payload:{
+                    type: 'danger',
+                    title: '失敗',
+                    text: Array.isArray(error?.response?.data?.message) ? error?.response?.data?.message.join('、'): error?.response?.data?.message,
+                }
+            })
         }
        } 
     return(
@@ -170,3 +181,5 @@ const ProductModal =({closeProductModal,getProducts,type,tempProduct})=>{
     )
 };
 export default ProductModal;
+
+
