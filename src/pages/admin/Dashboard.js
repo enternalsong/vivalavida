@@ -4,7 +4,7 @@ import axios from 'axios'
 import {useEffect, useReducer} from 'react'
 import Message from '../components/Message.js';
 import {MessageContext,messageReducer,initState} from '../../store/messageStore.js'
-
+import Footer from '../components/Footer.js';
 function Dashboard() {
   const navigate = useNavigate()
   const reducer = useReducer(messageReducer, initState);
@@ -20,9 +20,7 @@ function Dashboard() {
   ?.split('=')[1];
   axios.defaults.headers.common['Authorization'] = token;
   console.log(token);
-  useEffect(()=>{
-
-    
+  useEffect(()=>{    
     if(!token){
       navigate('/login')
     }
@@ -93,9 +91,9 @@ function Dashboard() {
             {/* Products end */}
           </div>
         </div>
+        <Footer></Footer>
         </MessageContext.Provider>
       </>
     )
   }
-  
   export default Dashboard;
