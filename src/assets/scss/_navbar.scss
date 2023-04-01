@@ -1,0 +1,90 @@
+//Navbar
+
+
+.navbar{
+    z-index: 90;
+    width:100%;
+    background-color: rgba(255, 255, 255, 0.48);
+    width:100%;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+    
+    .navbar-brand {
+        display: inline-block;
+        font-size: 1.25rem;
+        white-space: nowrap;
+    }
+.topbarNav{
+    background: #fff;
+    position: relative;
+}
+.topNavbar-link {
+    position: relative;
+}
+.logo {
+    margin: 5px 0;
+    width: 125px;
+    height: 40px;
+    
+}
+    .icon-nav{
+        color:#1C37D2;
+        flex-direction: column;
+        position: relative;
+        text-decoration:none;
+        align-items:center;
+        display: inline-flex;
+        flex-direction: column;
+        height: 40px;
+        justify-content: center;
+        margin: 0 15px;
+        position: relative;
+        width: 55px;
+    } 
+    .icon-text {
+        font-size: .78rem;
+        text-align: center;
+    }
+    .icon-nav:before{
+        border-left: 1px solid #dee2e6;
+        content: "";
+        height: 100%;
+        left: -15px;
+        position: absolute;
+    }
+    .topNavbar-link:after {
+        border-left: 1px solid #dee2e6;
+        content: "";
+        height: 100%;
+        position: absolute;
+        right: 0;
+    }
+
+  //  color: #adb5bd;
+.icon-nav:hover{
+    color:#ebac3e;
+}
+
+
+//rwd
+@media(max-width:768px){
+
+    .introduction__item {
+        padding: 0;
+    }
+}
+@media( max-width:540px)
+{
+    .icon-nav{
+        height: 30px;
+        width: 55px;
+    }
+}
+@media( max-width:280px){
+    .brand-logo{
+        position: absolute;
+        bottom:-80px;
+        right:20px;
+    }
+}

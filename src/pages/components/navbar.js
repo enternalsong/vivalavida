@@ -2,65 +2,81 @@ import LogoImg from "../../assets/images/logo192.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
+  faHouse,
   faSuitcase,
-  faBurger,
   faUser,
-  faHome,
+  faClipboardList,
 } from "@fortawesome/free-solid-svg-icons";
-
-import {NavLink} from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
 function Navbar() {
+  const [scrollY_over, setScrooly_over] = useState(false);
+  useEffect(() => {
+    const scrollEvent = () => {
+      //console.log("scroll", window.scrollY);
+      if (window.scrollY >= 80) {
+        setScrooly_over(true);
+      } else {
+        setScrooly_over(false);
+      }
+    };
+    window.addEventListener("scroll", scrollEvent);
+
+    return () => window.removeEventListener("scroll", scrollEvent);
+  }, []);
   return (
     <>
       <div>
-        <div>
-          <nav className="navbar navbar-light topNavbar mb-2">
-            <div className="container">
-              <div className="d-inline-flex topNavbar-link ">
-                <div className="icon-box">
+
+          <nav
+            className={
+              scrollY_over
+                ? "navbar navbar-light topNavbar fixed-top   bg-white mb-4 "
+                : "navbar navbar-light topNavbar  fixed-top mb-4"
+            }>
+              <div className="container">
+            <div className="d-inline-flex topNavbar-link">
+
                 <NavLink
-                  to='/'
-                  className="nav-home icon-nav active router-link-active flex-column align-items-center">
-                  <FontAwesomeIcon className="icon-in-bar-home" icon={faHome}    />
+                  to="/"
+                  className="nav-home icon-nav ">
+                  <FontAwesomeIcon icon={ faHouse}/>
+
                   <div className="icon-text">首 頁</div>
                 </NavLink>
-                </div>
-                <div className="icon-box">
-                <NavLink to="/products" className="icon-nav icon-discount">
-                  <FontAwesomeIcon className="icon-in-bar" icon={faBurger} />
+
+
+                <NavLink to="/products" className="icon-nav icon-end">
+                  <FontAwesomeIcon icon={ faSuitcase}/>
+
                   <div className="icon-text">探索行程</div>
                 </NavLink>
-                </div>
-              </div>
+            </div>
 
-              <NavLink
-                to="/"
-                className="navbar-brand logo active router-link-active">
-                <img className="brand-logo" src={LogoImg} />
-              </NavLink>
+            <NavLink
+              to="/"
+              className="navbar-brand logo active router-link-active">
+              VivaLaVida
+            </NavLink>
+            <div className="d-inline-flex topNavbar-link ">
+   
+                <NavLink
+                  to="/detail"
+                  className="icon-nav  active router-link-active">
+                  <FontAwesomeIcon icon={ faClipboardList}/>
 
+                  <div className="icon-text">產品詳細</div>
+                </NavLink>
 
-              
-                <div className="d-inline-flex topNavbar-link ">
-                    <div className="icon-box">
-                        <NavLink
-                        to="/Detail"
-                        className="icon-nav  active router-link-active">
-                        <FontAwesomeIcon icon={faSuitcase}className="icon-in-bar"/>
-                        <div className="icon-text">文章區</div>
-                        </NavLink>
-                    </div>
-                    <div className="icon-box">
-                        <NavLink to="/Login" className="icon-nav icon-discount">
-                        <FontAwesomeIcon icon={faUser} className="icon-in-bar"/>
-                        <div className="icon-text">登入</div>
-                        </NavLink>
-                    </div>
-              </div>
+                <NavLink to="/login" className="icon-nav icon-end">
+                  <FontAwesomeIcon icon={ faUser}/>
+                  <div className="icon-text">登入</div>
+                </NavLink>
 
             </div>
+            </div>
           </nav>
-        </div>
+
       </div>
     </>
   );

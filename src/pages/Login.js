@@ -31,7 +31,7 @@ import { useNavigate } from 'react-router-dom';
         }
     }
     
-    return(
+    return(<>
 <div className="login-page bg-light">
     <div className="container">
         <div className="row">
@@ -90,6 +90,7 @@ import { useNavigate } from 'react-router-dom';
         </div>
     </div>
 </div>
+</>
     )
 }
 export default Login;

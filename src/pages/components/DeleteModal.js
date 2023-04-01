@@ -6,7 +6,7 @@ const DeleteModal =({close,handleDelete,text,id})=>{
           tabIndex='-1'
           aria-labelledby='exampleModalLabel'
           aria-hidden='true'
-          id="deleteModal"
+          id="deleteModal" mt-3
         >
           <div className='modal-dialog'>
             <div className='modal-content'>

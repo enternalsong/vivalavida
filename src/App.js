@@ -14,8 +14,9 @@ import Dashboard  from './pages/admin/Dashboard.js'
 import AdminProducts from './pages/admin/AdminProducts.js';
 import AdminCoupons from './pages/admin/AdminCoupons.js';
 
+import Home from './pages/layout/Home.js';
 import Products from './pages/layout/Products.js';
-import Detail from './pages/layout/Detail.js';
+import ProductDetail from './pages/layout/ProductDetail.js';
 // Import Component
 //scss
 import './assets/scss/all.scss';
@@ -39,8 +40,9 @@ function App() {
           <Route path="coupons" element={<AdminCoupons/>}></Route>
         </Route>
         <Route path="/" element={<Layout/>}>
+          <Route path="" element={<Home/>}></Route>
           <Route path="products" element={<Products/>}></Route>
-          <Route path="detail" element={<Detail/>}></Route>
+          <Route path="product/:id" element={<ProductDetail/>}></Route>
         </Route>
       </Routes>
     </div>

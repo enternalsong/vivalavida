@@ -14,7 +14,7 @@ function Productslist(){
                                 <div className="card-body" style={{fontSize:15+"px"}}>
                                     <h5 className="card-title">{product.title}</h5>
                                     <span className="float-end">{product.price}</span>
-                                    <button href="#" className="btn btn-outline-primary w-100" onClick={()=>{
+                                    <button href="#" className="btn btn-outline-primary" onClick={()=>{
                                         dispatch({
                                             type:'ADD_TO_CART',
                                             payload:{

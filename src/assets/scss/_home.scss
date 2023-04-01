@@ -1,0 +1,281 @@
+
+//home
+.carousel-inner{
+    max-height:330px;
+    position:relative;
+}
+.carousel-item{
+    position:static;
+}
+.carousel-indicators li{
+    background-color:rgba(255,255,255,.5);
+    width: 7rem;
+    height: 4px;
+    margin-right:10px;
+    margin-left: 10px;
+}
+.carousel-indicators li::before {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 10px;
+    content: "";
+}
+.carousel-indicators .active {
+    background-color: #fff;
+}
+.carousel-bg{
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-position: center center;
+
+}
+.carousel-caption{
+    bottom:6rem;
+    color:white;
+    font-weight: 600;
+    text-shadow: 0 6px 12px rgba(0,0,0,.0821678);
+}
+.home-main-for-you{
+    ul{
+        list-style-type: none;
+    }
+}
+//section
+.section{
+    padding-bottom: 1.875rem;
+
+    .introduction{
+        flex-wrap: wrap;
+    }
+    .introduction h4 {
+        font-size: 1.5rem;
+        line-height: 1.5;
+    }
+    .introduction__item {
+        padding-top: 0.9375rem;
+        margin-bottom: 1.875rem;
+        padding-left: 0.9375rem;
+        padding-right: 0.9375rem;
+    }
+
+}
+
+
+//RWD
+@media( max-width:540px)
+{
+    .carousel-caption {
+        position: absolute;
+        right: 15%;
+        bottom: 1rem;
+        left: 15%;
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+        color: #fff;
+        text-align: center;
+    }
+    .carousel-text{
+        display:none;
+    }
+}
+@media( max-width:280px){
+    .carousel-caption {
+        position: absolute;
+        right: 15%;
+        bottom: 2px;
+        left: 15%;
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+        color: #fff;
+        text-align: center;
+    }
+    .carousel-text{
+        display:none;
+    }
+
+}
+
+
+//articewall
+
+//TravelStebar // Artice Wall
+
+.bg-hot1{
+    background-image:url('../images/theme01-whale.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center center;
+    width:100%;
+    height:158px;
+    padding:20px;
+    color:white;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom:20px;
+  }
+  .bg-hot2{
+    background-image:url('../images/theme02-firework.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center center;
+    width:100%;
+    height:158px;
+    padding:20px;
+    color:white;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom:20px;
+  }
+  .bg-hot3{
+    background-image:url('../images/theme03-okinawa.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center center;
+    width:100%;
+    height:158px;
+    padding:20px;
+    color:white;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom:20px;
+  }
+  .bg-hot4{
+    background-image:url('../images/theme04-food.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center center;
+    width:100%;
+    height:158px;
+    padding:20px;
+    color:white;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom:20px;
+  }
+  .hotcard{
+    display:flex;
+    flex-direction:column;
+    margin-top:8px;
+    height:68px;
+    .title{
+      font-size: 16px;
+      line-height: 22px;
+      color: rgb(255, 255, 255);
+      font-weight: 500;
+      max-height: 44px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
+  
+    }
+    .text{
+      font-size: 12px;
+      line-height: 16px;
+      color: rgb(255, 255, 255);
+      max-height: 32px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
+    }
+  }
+  .hotcard-button{
+    padding:6px 12px;
+    border-radius:6px;
+    background-color: white;
+    width:fit-content;
+    .text{
+      display: inline-block;
+      font-size: 12px;
+      line-height: 16px;
+      color: #212121;
+      font-weight: 500;
+    }
+  }
+.articeWall{
+    width:100%;
+    padding-left:20px;
+    padding-right:20px;
+    margin:0 0 0 0 ;
+    display:block; 
+    
+    
+
+    .footer{
+      text-align: center;
+      margin-bottom:20px;
+      padding:0px;
+    a{
+      color: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      display:block;
+      width:100%;
+
+    }
+    .button{
+      width: 100%;
+      min-width: unset;
+      line-height: 20px;
+      font-size: 14px;
+      padding: 7px;
+      border: solid black 1px;
+      background-color:transparent;
+      border-radius: 8px;
+      .view-more{
+        font-size:14px;
+      }
+    }
+  }
+    }
+.travelSitebox{
+    .card1{
+        height:100%;
+        width:175px;
+        background-color:white;
+        position:relative;
+        overflow:hidden;
+        .card-image{
+          width:175px;
+          height:235px;
+          display:block;
+          background-position: center;
+          background-repeat: no-repeat;
+          position:relative;
+          border-radius:12px;
+        }
+        .info{
+            color:white;
+            width:100%;
+            height: 100%; 
+            top:0;
+            opacity: 0;
+            position:absolute;
+            box-sizing: border-box;
+            background-color: rgba(0,0,0,0.3);
+          border-radius:12px;
+        }
+        .text{
+            position:absolute;
+            font-size:20px;
+            bottom: 20px;
+            left:20px;
+            color:white;
+          }
+        .info:hover{
+        transition: 1s;
+        opacity: 1;
+        }
+      }
+
+}
