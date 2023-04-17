@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import ArticeWall from "../components/ArticeWall";
-import Navbar01 from "../Navbar01"
+import Navbar1 from "../Navbar01";
 function Home() {
   let count = 0;
   const [activeIndex, setActiveIndex] = useState(0);
@@ -27,7 +27,6 @@ function Home() {
   }
   return (
     <>
-    <Navbar01></Navbar01>
       {/* Carousel Item*/}
       <div
         id="carouselExampleIndicators"

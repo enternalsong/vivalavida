@@ -1,4 +1,4 @@
-import {useReducer} from 'react'
+import {useReducer,useState} from 'react'
 import Navbar_Back from "./admin/Navbar-back.js";
 import Productslist from "./admin/Products.js";
 import Cart from "./admin/Cart.js";
@@ -6,18 +6,21 @@ import Cart from "./admin/Cart.js";
 import {CartContext} from '../store.js'
 function Navbar1 () {
     const cartReducer = useReducer((state,action)=>{
-        const cartList = [...state.cartList]
+        const cartList = [...state.cartList];
         //#1 先取得當前購物車目標品項索理
         const index = cartList.findIndex((item)=>item.id === action.payload.id);
         console.log(action);
+        console.log(state);
         switch (action.type){
             case 'ADD_TO_CART':
                 if ( index=== -1){
                     //還未加入購物車內
-                    cartList.push(action.payload)
+                    action.payload.total =(parseInt(action.payload.price) *1 );
+                    cartList.push(action.payload);
                 }
                 else{
                     cartList[index].quantity += action.payload.quantity;
+                    cartList[index].total = parseInt(cartList[index].price) * parseInt(cartList[index].quantity);
                     //加入當前
                 }
                 return{
@@ -39,7 +42,6 @@ function Navbar1 () {
 
     return(
         <CartContext.Provider value={cartReducer}>
-            <Navbar_Back></Navbar_Back>
             <div className="container mt-4">
 
                 <div className="row">

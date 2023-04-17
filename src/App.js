@@ -13,10 +13,11 @@ import Login  from './pages/Login.js'
 import Dashboard  from './pages/admin/Dashboard.js'
 import AdminProducts from './pages/admin/AdminProducts.js';
 import AdminCoupons from './pages/admin/AdminCoupons.js';
-
+import Cart from './pages/layout/Cart.js';
 import Home from './pages/layout/Home.js';
 import Products from './pages/layout/Products.js';
 import ProductDetail from './pages/layout/ProductDetail.js';
+import Checkout from './pages/layout/Checkout.js';
 // Import Component
 //scss
 import './assets/scss/all.scss';
@@ -43,6 +44,8 @@ function App() {
           <Route path="" element={<Home/>}></Route>
           <Route path="products" element={<Products/>}></Route>
           <Route path="product/:id" element={<ProductDetail/>}></Route>
+          <Route path='cart' element={<Cart/>}></Route>
+          <Route path='checkout' element={<Checkout/>}></Route>
         </Route>
       </Routes>
     </div>

@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom';
         try{
             const signinRes = await axios.post(`/v2/admin/signin`,data);
             const {token,expired} = signinRes.data;
+            console.log(token);
             document.cookie = `shopToken=${token};expires=${new Date(expired)};`;
             axios.defaults.headers.common['Authorization'] = token;//save token
             const productRes = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH}/admin/products/all`);

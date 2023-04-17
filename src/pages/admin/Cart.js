@@ -3,11 +3,13 @@ import {CartContext} from "../../store"
 
 function Cart(){
     const [state,dispatch] = useContext(CartContext);
+    let total_price = 0;
     return(
         <div className="bg-light p-3">
             <table className="table align-middle">
                 <tbody>
                     {state.cartList.map((item)=>{
+                        total_price += item.total;
                         return(
                         <tr key={item.id}>
                             <td>
@@ -41,7 +43,7 @@ function Cart(){
                                 </select>
                             </td>
                             <td className="text-end">
-                                NT {item.price * item.quantity}
+                                NT {item.total}
                             </td>
                         </tr>
                         )
@@ -49,8 +51,8 @@ function Cart(){
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colSpan={5}className="form-select text-end">
-                        總金額 $4400
+                        <td colSpan={5} className="form-select text-end">
+                        總金額 ${total_price}
                         </td>
                     </tr>
                 </tfoot>

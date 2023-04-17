@@ -14,9 +14,11 @@ const ProductModal =({closeProductModal,getProducts,type,tempProduct})=>{
             is_enabled: 0,
             imageUrl: "",
           });
+    const [upFile,setUpFile] = useState('');
     const [,dispatch] =useContext(MessageContext);
           useEffect(()=>{
-            //console.log(type,tempProduct);
+            
+            console.log(type,tempProduct);
             if(type==='create'){
                 setTempData({
                     title: "",
@@ -34,6 +36,41 @@ const ProductModal =({closeProductModal,getProducts,type,tempProduct})=>{
                 //console.log(tempProduct);
             }
         },[type,tempProduct]);
+        useEffect(()=>{
+            console.log(upFile);
+            if(upFile)uploadFile();
+            else{
+                console.log("block");
+            }
+        },[upFile]);
+    const handleFileUpload = (event) => {
+        let selectedFile = event.target.files[0];
+        if (selectedFile) {
+                setUpFile(event.target.files[0]);
+                // selectedFile = null;
+            }
+        // console.log(event);
+         console.log(selectedFile);     
+        };
+    const uploadFile=async()=>{
+        try{
+        const formData = new FormData();
+        formData.append('file-to-upload',upFile);
+        const url = `/v2/api/${process.env.REACT_APP_API_PATH}/admin/upload`;
+        const res = await axios.post(url,formData,{
+            headers:{
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        console.log(res.data);
+        setTempData({
+            ...tempData,
+            'imageUrl': res.data.imageUrl
+        }) 
+        }catch(error){
+            console.log(error);
+        }
+    }
     const handleChange = (e) =>{
         const{value ,name} = e.target;
         if(['price','origin_price'].includes(name)){
@@ -118,7 +155,7 @@ const ProductModal =({closeProductModal,getProducts,type,tempProduct})=>{
                     <div className="col-md-6">
                         <div className="form-group mb-2">
                             <label htmlFor="price">售價</label>
-                            <input type="number" id="price" name="price" placeholder="請輸入原價" 
+                            <input type="number" id="price" name="price" placeholder="請輸入售價" 
                             className="form-control" onChange={handleChange} value={tempData.price}/>
                         </div>
                         <div className="form-group mb-2">
@@ -147,26 +184,36 @@ const ProductModal =({closeProductModal,getProducts,type,tempProduct})=>{
                             </div>
                         </div>
                     </div>
+
+    
+            </div>
+            <div className="container">
+                <div className="row">
                     <div className="col-md-6">
-                        <div className="form-group mb-2">
-                            <label htmlFor="price">輸入圖片網址</label>
-                            <input type="text" id="image" name="imageUrl" placeholder="請輸入圖片連結" 
-                            className="form-control" onChange={handleChange} value={tempData.imageUrl}/>
-                        </div>
+                            <div className="form-group mb-2">
+                                <label htmlFor="price">輸入圖片網址</label>
+                                <input type="text" id="image" name="imageUrl" placeholder="請輸入圖片連結" 
+                                className="form-control" onChange={handleChange} value={tempData.imageUrl}/>
+                            </div>
+                            <div className='form-group mb-2'>
+                                <label className='w-100' htmlFor='customFile'>
+                                    或 上傳圖片
+                                    <input
+                                    type='file'
+                                    id='customFile' 
+                                    className='form-control'onChange={handleFileUpload} />
+                                
+                                </label>
+                            </div>
                     </div>
                     <div className="col-md-6">
-                        <div className='form-group mb-2'>
-                            <label className='w-100' htmlFor='customFile'>
-                                或 上傳圖片
-                                <input
-                                type='file'
-                                id='customFile'
-                                className='form-control'
-                                />
-                            </label>
-                        </div>
-                    </div>
-            </div>  
+                            <div className="card">
+                                <img className="card-img-top" src={tempData.imageUrl} alt="Card image cap"/>
+                            </div>
+                    </div>       
+                </div> 
+            </div>
+
             {/* Modal inner */}
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={closeProductModal}>關閉</button>

@@ -1,14 +1,15 @@
 //Layout ProductPage
 
 .pPage{
+    .nav-menu-link{
+        text-decoration: none;
+        color: rgb(123, 107, 107);
+    }
     .mr-auto{
         margin-right:auto;
     }
 //init
-    a{
-        text-decoration: none;
-        color: black;
-    }
+
     ul{
         list-style:none;
         padding:0px;
@@ -44,6 +45,9 @@
             font-weight: bolder;
             cursor: pointer;
             transition: all .35s;
+        }
+        .nav-menu-link .active{
+            color:#ffc107;
         }
     }
     .side-box{

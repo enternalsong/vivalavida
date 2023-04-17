@@ -9,9 +9,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-function Navbar() {
+function Navbar({cartData}) {
   const [scrollY_over, setScrooly_over] = useState(false);
   useEffect(() => {
+    console.log(cartData);
     const scrollEvent = () => {
       //console.log("scroll", window.scrollY);
       if (window.scrollY >= 80) {
@@ -68,9 +69,11 @@ function Navbar() {
                   <div className="icon-text">產品詳細</div>
                 </NavLink>
 
-                <NavLink to="/login" className="icon-nav icon-end">
-                  <FontAwesomeIcon icon={ faUser}/>
-                  <div className="icon-text">登入</div>
+                <NavLink to="/cart" className="icon-nav icon-end">
+                  <FontAwesomeIcon icon={ faCartShopping}/>
+                  <span className="position-absolute translate-middle badge text-bg-danger rounded-pill cart-qty-icon" id="cart-dropdown" data-bs-toggle="dropdown" aria-expanded="false">{cartData?.carts?.length}</span>
+                  <div className="icon-text top-0">購物車</div>
+
                 </NavLink>
 
             </div>

@@ -3,18 +3,7 @@ import { MessageContext } from '../../store/messageStore';
 function Message() {
     const [message,dispatch] = useContext(MessageContext)
     return (
-    <>
-        <button type="button" onClick={()=>{
-            dispatch({
-                type: 'POST_MESSAGE', //success,danger
-            });
-            setTimeout(()=>{
-               dispatch({
-                type: 'CLEAR_MESSAGE',
-               });
-            },3000);
-        }}>按我</button>
-        
+    <>     
       <div
         className='toast-container position-fixed'
         style={{ top: '20px', right: '15px' }}
