@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/enternalsong/vivalavida/static/css/main.1f394d94.css",
-    "main.js": "/enternalsong/vivalavida/static/js/main.87f69d5f.js",
-    "static/js/787.5848ebff.chunk.js": "/enternalsong/vivalavida/static/js/787.5848ebff.chunk.js",
+    "main.css": "/enternalsong/vivalavida/static/css/main.3fe5cf25.css",
+    "main.js": "/enternalsong/vivalavida/static/js/main.6733994a.js",
+    "static/js/787.2c8d6098.chunk.js": "/enternalsong/vivalavida/static/js/787.2c8d6098.chunk.js",
     "static/media/hotspot05_okinawa.png": "/enternalsong/vivalavida/static/media/hotspot05_okinawa.a94f66c7f16a561c0ed8.png",
     "static/media/hotspot06_singapore.png": "/enternalsong/vivalavida/static/media/hotspot06_singapore.73a42f1a2c4d02a3192c.png",
     "static/media/hotspot08_switherland.png": "/enternalsong/vivalavida/static/media/hotspot08_switherland.0dec41928472ebaffc76.png",
@@ -21,12 +21,12 @@
     "static/media/bootstrap-icons.woff?": "/enternalsong/vivalavida/static/media/bootstrap-icons.6959d0d983ee318f8880.woff",
     "static/media/bootstrap-icons.woff2?": "/enternalsong/vivalavida/static/media/bootstrap-icons.b2e5aab643c6f0fd2da6.woff2",
     "index.html": "/enternalsong/vivalavida/index.html",
-    "main.1f394d94.css.map": "/enternalsong/vivalavida/static/css/main.1f394d94.css.map",
-    "main.87f69d5f.js.map": "/enternalsong/vivalavida/static/js/main.87f69d5f.js.map",
-    "787.5848ebff.chunk.js.map": "/enternalsong/vivalavida/static/js/787.5848ebff.chunk.js.map"
+    "main.3fe5cf25.css.map": "/enternalsong/vivalavida/static/css/main.3fe5cf25.css.map",
+    "main.6733994a.js.map": "/enternalsong/vivalavida/static/js/main.6733994a.js.map",
+    "787.2c8d6098.chunk.js.map": "/enternalsong/vivalavida/static/js/787.2c8d6098.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1f394d94.css",
-    "static/js/main.87f69d5f.js"
+    "static/css/main.3fe5cf25.css",
+    "static/js/main.6733994a.js"
   ]
 }
