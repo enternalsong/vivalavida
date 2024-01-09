@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/enternalsong/vivalavida/static/css/main.1f394d94.css",
+    "main.js": "/enternalsong/vivalavida/static/js/main.87f69d5f.js",
+    "static/js/787.5848ebff.chunk.js": "/enternalsong/vivalavida/static/js/787.5848ebff.chunk.js",
+    "static/media/hotspot05_okinawa.png": "/enternalsong/vivalavida/static/media/hotspot05_okinawa.a94f66c7f16a561c0ed8.png",
+    "static/media/hotspot06_singapore.png": "/enternalsong/vivalavida/static/media/hotspot06_singapore.73a42f1a2c4d02a3192c.png",
+    "static/media/hotspot08_switherland.png": "/enternalsong/vivalavida/static/media/hotspot08_switherland.0dec41928472ebaffc76.png",
+    "static/media/hotspot03_wenisu.png": "/enternalsong/vivalavida/static/media/hotspot03_wenisu.669b702a0530b8138006.png",
+    "static/media/hotspot01_tokyo.png": "/enternalsong/vivalavida/static/media/hotspot01_tokyo.6edd3a422f938b8e9864.png",
+    "static/media/hotspot04_oisaka.png": "/enternalsong/vivalavida/static/media/hotspot04_oisaka.c7d129592c12c075ad46.png",
+    "static/media/theme02-firework.jpg": "/enternalsong/vivalavida/static/media/theme02-firework.2db88c3a20aca4daf39a.jpg",
+    "static/media/hotspot02_calo.png": "/enternalsong/vivalavida/static/media/hotspot02_calo.368e7d889e67b90a2c94.png",
+    "static/media/carousel-beach.jpg": "/enternalsong/vivalavida/static/media/carousel-beach.4ea13016614e3cf823ef.jpg",
+    "static/media/carousel-cheerybloosom.jpg": "/enternalsong/vivalavida/static/media/carousel-cheerybloosom.30fcc14c8182c03d2733.jpg",
+    "static/media/theme01-whale.jpg": "/enternalsong/vivalavida/static/media/theme01-whale.b01c3110d8ae91aa3072.jpg",
+    "static/media/carousel-mountain.jpg": "/enternalsong/vivalavida/static/media/carousel-mountain.0b5d66bad8d556dd8472.jpg",
+    "static/media/theme04-food.jpg": "/enternalsong/vivalavida/static/media/theme04-food.18351870d2a72d2be804.jpg",
+    "static/media/theme03-okinawa.jpg": "/enternalsong/vivalavida/static/media/theme03-okinawa.02d1dd6a05acfde3466c.jpg",
+    "static/media/hotspot07_taipei.png": "/enternalsong/vivalavida/static/media/hotspot07_taipei.b5ba8e782ed6bb602399.png",
+    "static/media/bootstrap-icons.woff?": "/enternalsong/vivalavida/static/media/bootstrap-icons.6959d0d983ee318f8880.woff",
+    "static/media/bootstrap-icons.woff2?": "/enternalsong/vivalavida/static/media/bootstrap-icons.b2e5aab643c6f0fd2da6.woff2",
+    "index.html": "/enternalsong/vivalavida/index.html",
+    "main.1f394d94.css.map": "/enternalsong/vivalavida/static/css/main.1f394d94.css.map",
+    "main.87f69d5f.js.map": "/enternalsong/vivalavida/static/js/main.87f69d5f.js.map",
+    "787.5848ebff.chunk.js.map": "/enternalsong/vivalavida/static/js/787.5848ebff.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1f394d94.css",
+    "static/js/main.87f69d5f.js"
+  ]
+}
