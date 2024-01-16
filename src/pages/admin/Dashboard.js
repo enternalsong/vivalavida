@@ -19,7 +19,7 @@ function Dashboard() {
   .find((row)=> row.startsWith('shopToken='))
   ?.split('=')[1];
   axios.defaults.headers.common['Authorization'] = token;
-  console.log(token);
+  //console.log(token);
   useEffect(()=>{    
     if(!token){
       navigate('/login')

@@ -5,7 +5,7 @@ import axios from 'axios';
 //React Hook
 import {useState , useEffect } from 'react';
 //React Router
-import { Routes,Route} from 'react-router-dom'
+import {Routes ,Route} from 'react-router-dom'
 //React Component
 import Layout from './pages/Layout.js';
 import Navbar1 from './pages/Navbar01.js'
@@ -40,7 +40,7 @@ function App() {
           <Route path="products" element={<AdminProducts/>}></Route>
           <Route path="coupons" element={<AdminCoupons/>}></Route>
         </Route>
-        <Route path="/" element={<Layout/>}>
+        <Route exact path="/" element={<Layout/>}>
           <Route path="" element={<Home/>}></Route>
           <Route path="products" element={<Products/>}></Route>
           <Route path="product/:id" element={<ProductDetail/>}></Route>
